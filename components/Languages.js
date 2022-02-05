@@ -1,4 +1,4 @@
-import classes from './popular.module.css'
+import classes from './languages.module.css'
 
 const Langauges = ({ onUpdateLanguage, selected }) => {
   const languages = ['All', 'Java', 'JavaScript', 'Go', 'Python', 'Swift']
@@ -10,10 +10,8 @@ const Langauges = ({ onUpdateLanguage, selected }) => {
           return (
             <li key={language} className={classes.list}>
               <button
-                style={
-                  language === selected ? { color: 'rgb(255,0,255)' } : null
-                }
                 onClick={() => onUpdateLanguage(language)}
+                style={language === selected ? { color: 'red' } : null}
                 className={classes.button}
               >
                 {language}

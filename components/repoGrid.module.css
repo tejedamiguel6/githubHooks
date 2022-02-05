@@ -1,0 +1,36 @@
+.FlexContainer {
+  display: flex;
+}
+
+.FlexContainer ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.FlexContainer li {
+  list-style-type: none;
+  margin: 5px;
+  background-color: rgba(242, 241, 239);
+  border-radius: 15px;
+  box-shadow: 5px 5px #888888;
+}
+
+.FlexItems li {
+  flex-wrap: wrap;
+}
+
+.FlexItems h3 {
+  text-align: center;
+  color: black;
+}
+
+.FlexItems p {
+  width: 360px;
+  text-align: center;
+  padding: 15px;
+}

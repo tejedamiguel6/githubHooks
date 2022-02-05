@@ -4,30 +4,37 @@ import RepoGrid from './RepoGrid'
 import { fetchPopularRepos } from '../utils/api'
 
 const Popular = () => {
-  const [selectedLangauge, setSelectedLangauge] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [repos, setRepos] = useState([])
+  const [selectedLanguage, setSelectedLanguage] = useState('All')
+  const [loading, setLoading] = useState(false)
 
-  const selectedLanguage = (language) => {
-    fetchPopularRepos(language).then((data) => setSelectedLangauge(data))
+  const onUpdateLanguage = async (selectedLanguage) => {
+    const response = await fetchPopularRepos(selectedLanguage)
+    setRepos(response)
+    setSelectedLanguage(selectedLanguage)
   }
 
   useEffect(() => {
     setLoading(true)
-    fetchPopularRepos().then((data) => setSelectedLangauge(data))
+    fetchPopularRepos()
+    // .then((data) => setSelectedLangauge(data))
+    // .then((data) => console.log('selectedLangauge ', data.language))
     setLoading(false)
-  }, [])
+  }, [repos])
 
   return (
     <div>
       <Langauges
-        onUpdateLanguage={selectedLanguage}
-        selected={selectedLangauge}
+        onUpdateLanguage={onUpdateLanguage}
+        selected={selectedLanguage}
       />
       <div>
-        {loading ? <h3 style={{ textAlign: 'center' }}>LOADING</h3> : null}
+        {loading ? (
+          <h3 style={{ textAlign: 'center', color: 'red' }}>LOADING......</h3>
+        ) : (
+          <RepoGrid repos={repos} />
+        )}
       </div>
-
-      <RepoGrid repos={selectedLangauge} />
     </div>
   )
 }
